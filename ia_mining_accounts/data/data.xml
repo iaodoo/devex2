@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record  id="ia_hide" model="account.analytic.tag">
+            <field name="name">Hide</field>
+        </record>
+         <record  id="ia_unhide" model="account.analytic.tag">
+            <field name="name">Unhide</field>
+        </record>
+ </data>
+</odoo>

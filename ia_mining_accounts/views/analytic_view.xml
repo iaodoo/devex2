@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- Analytic Account Form Inheritance -->
+        <record id="ia_analytic_account_form" model="ir.ui.view">
+            <field name="name">ia_analytic_account_form</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='group_id']" position="attributes">
+                    <attribute name="string">Project</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='group_id']" position="after">
+                    <field name="tenement_company_id" options="{'no_create': True}" required="1"/>
+                    <field name="country_id" options="{'no_create': True}" required="1"/>
+                    <field name="state_id" options="{'no_create': True}" required="1"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <!-- Analytic Group Form Inheritance -->
+        <record id="ia_analytic_group_form" model="ir.ui.view">
+            <field name="name">ia_analytic_group_form</field>
+            <field name="model">account.analytic.group</field>
+            <field name="inherit_id" ref="analytic.account_analytic_group_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="tenement_company_id" options="{'no_create': True}" required="1"/>
+                    <field name="account_id" domain="[('company_id','=',tenement_company_id)]" options="{'no_create': True}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+         <!-- Analytic Account tree Inheritance -->
+        <record id="ia_view_account_analytic_account_list" model="ir.ui.view">
+            <field name="name">ia_analytic_account_form</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_list"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='company_id']" position="after">
+                     <field name="tenement_company_id"/>
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>               
+
+            </field>
+        </record>
+
+         <!-- Analytic Group Tree Inheritance -->
+        <record id="ia_account_analytic_group_tree_view" model="ir.ui.view">
+            <field name="name">ia_account_analytic_tag_tree_view</field>
+            <field name="model">account.analytic.group</field>
+            <field name="inherit_id" ref="analytic.account_analytic_group_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                     <field name="tenement_company_id"/>
+                </xpath>
+                 <xpath expr="//field[@name='company_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+
+</odoo>

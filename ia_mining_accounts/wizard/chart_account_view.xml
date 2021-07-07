@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="chart_account_view" model="ir.ui.view">
+        <field name="name">ia.chart.account.create.form</field>
+        <field name="model">ia.chart.account.create</field>
+        <field name="arch" type="xml">
+        <form>         
+            <group>           
+               <field name="company_ids"  widget= "many2many_checkboxes" placeholder="Select Company"/>
+            </group>           
+            <footer>
+                <button name="create_account" confirm="Are you sure you want to copy the account to the selected companies?" string="Create Account" type="object" default_focus="1" class="oe_highlight"/>
+                <button string="Cancel" class="btn btn-secondary" special="cancel" />
+            </footer>
+        </form>
+        </field>
+    </record>
+    
+    <record id="chart_account_action" model="ir.actions.act_window">
+           <field name="name">Create Chart of Accounts</field>
+           <field name="res_model">ia.chart.account.create</field>
+           <field name="view_mode">form</field>
+           <field name="target">new</field>
+          <field name="binding_model_id" ref="account.model_account_account"/>
+           <field name="binding_view_types">form</field> 
+       </record>
+
+    <!-- <menuitem id = "ia_chart_account_create_menu" parent="account.menu_finance_configuration" name="Create Chart of Accounts" sequence="35" groups="account.group_account_manager"> -->
+
+</odoo>

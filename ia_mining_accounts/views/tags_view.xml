@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- Tags Tree -->
+        <record id="ia_account_tags_tree" model="ir.ui.view">
+            <field name="name">ia_account_tags_tree</field>
+            <field name="model">ia.account.tags</field>
+            <field name="arch" type="xml">
+
+                <tree editable="top" create="1" delete="1" multi_edit="1" string="Tags">
+                    <field name="name" required="1"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <!-- Tags Action -->
+        <record id="ia_account_tags_action" model="ir.actions.act_window">
+            <field name="name">Tags</field>
+            <field name="res_model">ia.account.tags</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="ia_account_tags_tree"/>
+        </record>
+
+        <!-- Tags Menu -->
+        <menuitem id="ia_account_tags_menu" 
+            action="ia_account_tags_action" 
+            sequence="501" 
+            parent="account.account_invoicing_menu"/>
+
+</odoo>
