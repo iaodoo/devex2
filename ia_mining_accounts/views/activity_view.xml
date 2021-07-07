@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- Activity Tree -->
+        <record id="ia_account_activity_tree" model="ir.ui.view">
+            <field name="name">ia_account_activity_tree</field>
+            <field name="model">ia.account.activity</field>
+            <field name="arch" type="xml">
+
+                <tree editable="top" create="1" delete="1" multi_edit="1" string="Activity">
+                    <field name="name" required="1"/>
+                    <field name="country_id" options="{'no_create': True}" required="1"/>
+                    <field name="state_id" options="{'no_create': True}" required="1"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <!-- Activity Action -->
+        <record id="ia_account_activity_action" model="ir.actions.act_window">
+            <field name="name">Activity</field>
+            <field name="res_model">ia.account.activity</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="ia_account_activity_tree"/>
+        </record>
+
+        <!-- Activity Menu -->
+        <menuitem id="ia_account_activity_menu" 
+            action="ia_account_activity_action" 
+            sequence="500" 
+            parent="account.account_invoicing_menu"/>
+
+</odoo>

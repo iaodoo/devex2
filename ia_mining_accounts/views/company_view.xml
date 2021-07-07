@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- Company Form Inheritance -->
+        <record id="ia_company_form" model="ir.ui.view">
+            <field name="name">ia_company_form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook" position="inside">
+                    <page string="Inter-company Accounts" name="intercoaccounts">
+                        <field name="interco_account_ids">
+                            <tree string="Inter Company Accounts" editable="top">
+                                <field name="tenement_company_id" options="{'no_create': True}" domain="[('id','!=',parent.id)]"/>
+                                <field name="main_account_id" domain="[('company_id','=',parent.id)]" options="{'no_create': True}"/>
+                                <field name="tenement_account_id" domain="[('company_id','=',tenement_company_id)]" options="{'no_create': True}"/>
+                                <field name="main_journal_id" domain="[('company_id','=',parent.id)]" options="{'no_create': True}"/>
+                                <field name="tenement_journal_id" domain="[('company_id','=',tenement_company_id)]" options="{'no_create': True}"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+</odoo>

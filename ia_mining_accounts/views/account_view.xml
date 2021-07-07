@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- Account Form Inheritance -->
+        <record id="ia_account_account_form" model="ir.ui.view">
+            <field name="name">ia_account_account_form</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet" position="inside">
+                    <header>
+                        <button name="%(chart_account_action)d" title="Copy Account to Other Companies" string="Copy Account to Other Companies" type="action"/>
+                    </header>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="ia_account_account_tree" model="ir.ui.view">
+            <field name="name">ia_account_account_form</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_list"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/button[@name = 'action_read_account']" position="before">
+                  <button name="%(chart_account_action)d" title="Create Account" string="Copy" type="action"/>                   
+                </xpath>
+            </field>
+        </record>
+</odoo>
